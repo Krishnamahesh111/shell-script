@@ -3,12 +3,12 @@
 ID=(id -u)
 
 VALIDATE(){
-    if [$? -ne 0]
+    if [$1 -ne 0]
     then
-        echo "ERROR:: Installing MySQL is failed"
+        echo "ERROR:: $2 ... FAILED"
         exit 1
     else
-        echo "Installing MySQL is SUCCESS"
+        echo "$2 ... SUCCESS"
     fi
 }
 
@@ -22,4 +22,8 @@ fi
 
 yum install mysql -y
 
-VALIDATE
+VALIDATE $? "Installing MySql"
+
+yum install git -y
+
+VALIDATE $? "Installing GIT"
